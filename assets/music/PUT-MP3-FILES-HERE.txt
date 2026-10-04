@@ -1,0 +1,7 @@
+Put your MP3 files in this folder.
+Example:
+- wedding-prelude.mp3
+- our-wedding.mp3
+- romantic-evening.mp3
+
+Then update deploy/api/music.json if you want to change the playlist.
