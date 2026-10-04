@@ -8,17 +8,17 @@ Never commit database passwords or private contact numbers to this public reposi
 
 ## Struktur fail
 ```
-deploy/
-├── index.html          <- Kad jemputan (buka terus di browser)
-├── .htaccess
-├── database/
-│   └── kad_kahwin.sql    <- SQL database untuk phpMyAdmin
-├── api/
-│   ├── config.php      <- TUKAR maklumat DB di sini
-│   ├── schema.sql       <- Import ke MySQL/phpMyAdmin
-│   ├── rsvp.php          <- Endpoint RSVP (GET status, POST hantar)
-│   └── guestbook.php     <- Endpoint Buku Tetamu (GET senarai, POST hantar)
-└── README.md (fail ini)
+index.html
+.htaccess
+api/
+├── config.php          <- Safe template; configure credentials on PHP host
+├── schema.sql
+├── rsvp.php
+├── guestbook.php
+├── music.php
+└── music.json
+assets/music/
+database/
 ```
 
 ## Cara deploy ke hosting awam (cPanel / Hostinger / dsb.)
@@ -31,11 +31,11 @@ deploy/
 Edit `api/config.php`, tukar baris ini kepada maklumat sebenar hosting anda:
 ```php
 define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-define('DB_NAME', getenv('DB_NAME') ?: 'namahos_kadkahwin');
-define('DB_USER', getenv('DB_USER') ?: 'namahos_user');
-define('DB_PASS', getenv('DB_PASS') ?: 'KataLaluanAnda');
+define('DB_NAME', getenv('DB_NAME') ?: 'your_database');
+define('DB_USER', getenv('DB_USER') ?: 'your_database_user');
+define('DB_PASS', getenv('DB_PASS') ?: '');
 ```
-(Biasanya `DB_HOST` kekal `localhost` untuk shared hosting seperti cPanel/Hostinger.)
+Do not commit real database credentials. Configure them only on the PHP host. The committed config is a safe template and will not connect until configured.
 
 ### 3. Upload semua fail
 Upload **seluruh folder `deploy/`** (termasuk subfolder `api/`) ke `public_html/` (atau subfolder domain anda) melalui:
@@ -59,7 +59,7 @@ Buka `https://domainanda.com/` — kad patut terbuka, butang RSVP dan Buku Tetam
 Jika RSVP/Buku Tetamu tak berfungsi:
 - Semak `api/config.php` — maklumat DB tepat?
 - Buka terus `https://domainanda.com/api/rsvp.php` di browser — patut keluar JSON, bukan error PHP putih kosong.
-- Semak PHP versi hosting ≥ 7.4 (disyorkan 8.0+, sudah ditetapkan dalam `.htaccess`).
+- Semak PHP versi hosting ≥ 7.4 (disyorkan 8.0+). Tetapkan versi PHP melalui panel hosting jika pilihan itu tersedia.
 
 ### 5. (Pilihan) Tutup RSVP secara automatik
 Dalam jadual `rsvp_settings`, lajur `rsvp_tutup_pada` sudah ditetapkan contoh `2026-12-10 23:59:00`. Tukar tarikh ini di phpMyAdmin mengikut keperluan anda — selepas tarikh tersebut, borang RSVP akan dipaparkan sebagai "ditutup" secara automatik (seperti dalam video rujukan).
