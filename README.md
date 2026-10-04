@@ -38,17 +38,17 @@ define('DB_PASS', getenv('DB_PASS') ?: '');
 Do not commit real database credentials. Configure them only on the PHP host. The committed config is a safe template and will not connect until configured.
 
 ### 3. Upload semua fail
-Upload **seluruh folder `deploy/`** (termasuk subfolder `api/`) ke `public_html/` (atau subfolder domain anda) melalui:
+Upload **kandungan repository ini** (termasuk subfolder `api/`) ke `public_html/` (atau subfolder domain anda) melalui:
 - **File Manager** cPanel, atau
 - **FTP** (FileZilla) — host, username, password FTP dari panel hosting anda.
 
-Pastikan struktur kekal sama: `index.html` dan folder `api/` sebaris (sibling), supaya panggilan `fetch('api/rsvp.php')` dalam `index.html` berfungsi.
+Upload kandungan folder ini, bukan folder repository induk. Pastikan `index.html` dan folder `api/` berada sebaris (sibling), supaya panggilan `fetch('api/rsvp.php')` dalam `index.html` berfungsi.
 
 ### Langkah khusus InfinityFree
 1. Log masuk ke InfinityFree dan buka **Control Panel** bagi website anda.
-2. Dalam **Online File Manager**, buka folder `htdocs`. Upload kandungan folder `deploy/` ke situ (bukan folder `deploy/` itu sendiri). Pastikan `index.html` berada terus dalam `htdocs/` dan folder `api/`, `assets/` serta `database/` juga berada di situ.
+2. Dalam **Online File Manager**, buka folder `htdocs`. Upload kandungan repository ini ke situ (bukan folder induk repository). Pastikan `index.html` berada terus dalam `htdocs/` dan folder `api/`, `assets/` serta `database/` juga berada di situ.
 3. Dari Control Panel, buka **MySQL Databases** dan cipta database. Catat nama database, username, password dan hostname MySQL yang dipaparkan.
-4. Buka phpMyAdmin melalui Control Panel, pilih database itu, kemudian import `deploy/api/schema.sql`. Fail SQL ini mencipta jadual dalam database yang dipilih; ia tidak cuba mencipta database dengan nama tetap.
+4. Buka phpMyAdmin melalui Control Panel, pilih database itu, kemudian import `api/schema.sql`. Fail SQL ini mencipta jadual dalam database yang dipilih; ia tidak cuba mencipta database dengan nama tetap.
 5. Edit `htdocs/api/config.php` melalui File Manager. Isikan `DB_HOST`, `DB_NAME`, `DB_USER` dan `DB_PASS` menggunakan butiran MySQL InfinityFree, bukan nilai lalai `localhost`, `kad_kahwin`, `root` dan kata laluan kosong.
 6. Untuk mengehadkan panggilan API dari laman lain, tukar `$ALLOWED_ORIGINS = ['*'];` dalam `api/rsvp.php` dan `api/guestbook.php` kepada domain penuh website anda, contohnya `['https://namaanda.rf.gd']`.
 7. Buka domain website dan uji RSVP serta Buku Tetamu. Jika sambungan database gagal, semak semula hostname dan butiran database dalam `config.php`.
