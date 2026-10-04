@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hafiz & Ruqayyah — Majlis Perkahwinan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Petit+Formal+Script&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F5EEE1; --cream2:#EFE5D2; --ink:#3A2A1E; --ink-soft:#6b5947;
+    --rust:#B5602E; --rust-dark:#8c4a24; --gold:#A87C34; --gold-soft:#c9a76b;
+    --line: rgba(58,42,30,.18); --danger:#9c3b2e; --danger-bg:#fbe6e1;
+    padding-top: env(safe-area-inset-top,0px); padding-bottom: env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){ --cream:#241a12; --cream2:#2c2015; --ink:#f1e6d6; --ink-soft:#cbb99e; --line:rgba(241,230,214,.16); --danger-bg:#3a1f1a; }
+  }
+  :root[data-theme="dark"]{ --cream:#241a12; --cream2:#2c2015; --ink:#f1e6d6; --ink-soft:#cbb99e; --line:rgba(241,230,214,.16); --danger-bg:#3a1f1a; }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--rust-dark); color:var(--ink);
+    font-family:'EB Garamond', serif; -webkit-font-smoothing:antialiased;
+    display:flex; justify-content:center;
+  }
+  .phone{ width:100%; max-width:460px; background:var(--cream); min-height:100%; position:relative; overflow-x:hidden; }
+  .serif{ font-family:'Playfair Display', serif; }
+  .script{ font-family:'Petit Formal Script', cursive; }
+  .eyebrow{ letter-spacing:.14em; font-size:.72rem; color:var(--gold); }
+
+  .corner{ position:absolute; width:120px; height:120px; opacity:.55; pointer-events:none; color:var(--rust); }
+  .corner svg{ width:100%; height:100%; }
+  .tl{ top:0; left:0; } .tr{ top:0; right:0; transform:scaleX(-1); }
+
+  .butterfly{ position:absolute; width:22px; opacity:.75; animation:flutter 5s ease-in-out infinite; }
+  @keyframes flutter{ 0%,100%{ transform:translateY(0) rotate(-4deg);} 50%{ transform:translateY(-10px) rotate(6deg);} }
+
+  #cover{
+    position:fixed; inset:0; z-index:50; background:linear-gradient(180deg,var(--cream2),var(--cream));
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:transform .9s cubic-bezier(.7,0,.2,1), opacity .9s ease;
+  }
+  #cover .half{ position:absolute; top:0; bottom:0; width:52%; background:var(--cream2); transition:transform .9s cubic-bezier(.7,0,.2,1); }
+  #cover .half.l{ left:0; border-right:1px solid var(--line); }
+  #cover .half.r{ right:0; border-left:1px solid var(--line); }
+  #cover.open{ opacity:0; pointer-events:none; }
+  #cover.open .half.l{ transform:translateX(-105%); }
+  #cover.open .half.r{ transform:translateX(105%); }
+  .seal{ position:relative; z-index:2; width:118px; height:118px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gold-soft), var(--rust) 70%, var(--rust-dark));
+    display:flex; align-items:center; justify-content:center; box-shadow:0 10px 24px rgba(58,42,30,.35);
+    color:#fbf3e4; font-family:'Playfair Display',serif; font-size:1.9rem; letter-spacing:.02em;
+  }
+  .tap-hint{ position:absolute; bottom:14%; font-size:.78rem; color:var(--ink-soft); letter-spacing:.08em; text-align:center; width:100%; }
+
+  main{ padding-bottom:96px; }
+  section{ padding:44px 28px; position:relative; text-align:center; }
+  section + section{ border-top:1px solid var(--line); }
+  .card{ background:var(--cream2); border:1px solid var(--line); border-radius:18px; padding:34px 22px; position:relative; }
+
+  .monogram{ font-family:'Playfair Display',serif; font-weight:600; font-size:3.6rem; color:var(--rust); line-height:1; margin:10px 0; }
+  h1.names{ font-family:'Playfair Display',serif; font-size:1.85rem; font-weight:600; margin:6px 0 4px; letter-spacing:.01em; }
+  .and{ font-family:'Petit Formal Script',cursive; color:var(--gold); font-size:1.4rem; display:block; margin:2px 0; }
+  .date-line{ font-size:1rem; margin-top:10px; }
+  .date-line .en{ font-style:italic; color:var(--ink-soft); font-size:.9rem; }
+  .venue{ margin-top:6px; font-size:.92rem; color:var(--ink-soft); }
+
+  blockquote{ margin:22px auto 0; max-width:320px; font-style:italic; font-size:1rem; line-height:1.6; }
+  blockquote .src{ display:block; margin-top:10px; font-size:.78rem; font-style:normal; color:var(--gold); letter-spacing:.05em; }
+
+  .bismillah{ font-size:1.5rem; color:var(--rust); margin-bottom:6px; }
+  .greet-ar{ color:var(--ink-soft); font-size:.95rem; }
+  .parents{ font-family:'Playfair Display',serif; font-weight:600; margin:16px 0; font-size:1.05rem; letter-spacing:.02em; }
+  .invite-text{ font-size:.98rem; line-height:1.7; max-width:320px; margin:0 auto; }
+  .invite-text .en{ display:block; font-style:italic; color:var(--ink-soft); margin-top:6px; font-size:.88rem; }
+  .couple-box{ margin-top:18px; border:1px solid var(--line); border-radius:12px; padding:16px; font-family:'Playfair Display',serif; font-weight:600; font-size:1rem; line-height:1.6; background:var(--cream); }
+
+  .timeline-head{ background:var(--rust); color:#fbf3e4; border-radius:14px 14px 0 0; padding:14px 18px; margin:-34px -22px 20px; font-family:'Playfair Display',serif; letter-spacing:.03em; }
+  .timeline{ text-align:left; max-width:300px; margin:0 auto; }
+  .t-item{ position:relative; padding:0 0 26px 26px; border-left:1.5px solid var(--gold-soft); }
+  .t-item:last-child{ border-color:transparent; padding-bottom:0; }
+  .t-item::before{ content:''; position:absolute; left:-6px; top:2px; width:11px; height:11px; border-radius:50%; background:var(--rust); border:2px solid var(--cream2); }
+  .t-time{ font-family:'Playfair Display',serif; font-weight:600; }
+  .t-label{ color:var(--ink-soft); font-style:italic; font-size:.92rem; }
+
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; width:100%; max-width:300px;
+    padding:13px 18px; border-radius:999px; border:none; background:var(--rust); color:#fbf3e4; font-family:'EB Garamond',serif;
+    font-size:1rem; letter-spacing:.04em; cursor:pointer; text-decoration:none; margin:6px auto 0; }
+  .btn.outline{ background:transparent; border:1.5px solid var(--rust); color:var(--rust); }
+  .btn:active{ transform:scale(.98); }
+  .btn:disabled{ opacity:.5; cursor:not-allowed; }
+
+  .hashtag{ font-family:'Playfair Display',serif; color:var(--rust); font-size:1.1rem; margin-top:8px; }
+  footer{ text-align:center; padding:30px 24px 120px; font-size:.82rem; color:var(--ink-soft); }
+
+  nav.dock{ position:fixed; left:50%; transform:translateX(-50%); bottom:calc(14px + env(safe-area-inset-bottom,0px)); z-index:40;
+    width:calc(100% - 32px); max-width:428px; background:rgba(245,238,225,.92); backdrop-filter:blur(6px);
+    border:1px solid var(--line); border-radius:20px; display:flex; justify-content:space-around; padding:10px 4px;
+    box-shadow:0 8px 22px rgba(58,42,30,.25); }
+  :root[data-theme="dark"] nav.dock{ background:rgba(36,26,18,.92);}
+  @media (prefers-color-scheme:dark){ nav.dock{ background:rgba(36,26,18,.92);} }
+  nav.dock button{ background:none; border:none; display:flex; flex-direction:column; align-items:center; gap:4px; color:var(--ink); font-family:'EB Garamond',serif; font-size:.68rem; cursor:pointer; padding:4px 2px; }
+  nav.dock .ic{ width:30px; height:30px; border-radius:50%; background:var(--gold); color:#fbf3e4; display:flex; align-items:center; justify-content:center; font-size:.95rem; }
+
+  .sheet-backdrop{ position:fixed; inset:0; background:rgba(30,20,12,.45); z-index:60; opacity:0; pointer-events:none; transition:opacity .25s; }
+  .sheet-backdrop.show{ opacity:1; pointer-events:auto; }
+  .sheet{ position:fixed; left:50%; transform:translate(-50%,100%); bottom:0; width:100%; max-width:460px; background:var(--cream); z-index:61;
+    border-radius:20px 20px 0 0; padding:20px 22px calc(26px + env(safe-area-inset-bottom,0px)); transition:transform .3s cubic-bezier(.2,.8,.3,1); max-height:82vh; overflow-y:auto; }
+  .sheet.show{ transform:translate(-50%,0); }
+  .sheet h3{ font-family:'Playfair Display',serif; margin:0 0 2px; font-size:1.15rem; }
+  .sheet .sub{ color:var(--ink-soft); font-size:.8rem; margin-bottom:14px; }
+  .sheet .close{ position:absolute; right:18px; top:18px; background:none; border:1px solid var(--line); border-radius:50%; width:30px; height:30px; cursor:pointer; color:var(--ink); }
+  .row{ display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--line); }
+  .row:last-child{ border-bottom:none; }
+  .row .who b{ display:block; font-family:'Playfair Display',serif; font-weight:600; font-size:.95rem; }
+  .row .who span{ color:var(--ink-soft); font-size:.78rem; font-style:italic; }
+  .row .acts a{ margin-left:10px; color:var(--rust); text-decoration:none; font-size:1.05rem; }
+  .addr-box{ border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:.9rem; margin-bottom:16px; background:var(--cream2); }
+  .note-p{ font-size:.92rem; line-height:1.7; text-align:left; margin:0 0 10px; }
+
+  /* RSVP form */
+  .field{ text-align:left; margin-bottom:12px; }
+  .field label{ display:block; font-size:.8rem; color:var(--ink-soft); margin-bottom:4px; }
+  .field input, .field select, .field textarea{
+    width:100%; padding:10px 12px; border:1px solid var(--line); border-radius:10px;
+    background:var(--cream); color:var(--ink); font-family:'EB Garamond',serif; font-size:.95rem;
+  }
+  .field textarea{ resize:vertical; min-height:70px; }
+  .pax-row{ display:flex; gap:10px; }
+  .pax-row .field{ flex:1; }
+  .alert{ border-radius:10px; padding:12px 14px; font-size:.88rem; margin-bottom:14px; text-align:left; }
+  .alert.danger{ background:var(--danger-bg); color:var(--danger); }
+  .alert.success{ background:#e6f2e1; color:#2f6b2e; }
+  :root[data-theme="dark"] .alert.success{ background:#1d2e1b; color:#9fd99a; }
+  @media (prefers-color-scheme:dark){ .alert.success{ background:#1d2e1b; color:#9fd99a; } }
+  .summary-pills{ display:flex; gap:8px; justify-content:center; margin:14px 0; flex-wrap:wrap; }
+  .pill{ background:var(--cream); border:1px solid var(--line); border-radius:999px; padding:6px 14px; font-size:.78rem; color:var(--ink-soft); }
+  .pill b{ color:var(--rust); font-family:'Playfair Display',serif; }
+
+  /* Guestbook */
+  .gb-item{ text-align:left; border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px; background:var(--cream); }
+  .gb-item b{ font-family:'Playfair Display',serif; font-size:.92rem; }
+  .gb-item p{ margin:4px 0 0; font-size:.9rem; line-height:1.5; }
+  .gb-item time{ display:block; margin-top:6px; font-size:.72rem; color:var(--ink-soft); }
+  .loading, .empty{ font-size:.85rem; color:var(--ink-soft); font-style:italic; }
+  .empty{text-align:center;}
+  #guestbook-list.scrollable{
+    max-height:360px;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y;
+  }
+
+  /* =========================================================
+     WEDDING POLISH — soft ivory / champagne / blush theme
+     ========================================================= */
+  :root{
+    --cream:#fbf7ef; --cream2:#f2e7d7; --ink:#3d3028; --ink-soft:#78675b;
+    --rust:#9f625d; --rust-dark:#704542; --gold:#b8945a; --gold-soft:#d7bd8b;
+    --line:rgba(61,48,40,.14);
+    --blush:#ead4cf; --white:#fffaf3;
+  }
+  body{
+    background:
+      radial-gradient(circle at 15% 15%, rgba(216,190,143,.20), transparent 26%),
+      radial-gradient(circle at 85% 75%, rgba(234,212,207,.30), transparent 28%),
+      var(--rust-dark);
+  }
+  .phone{
+    background:
+      linear-gradient(rgba(255,250,243,.88),rgba(255,250,243,.88)),
+      radial-gradient(circle at 10% 20%, rgba(216,190,143,.16), transparent 22%),
+      radial-gradient(circle at 90% 80%, rgba(234,212,207,.20), transparent 25%);
+  }
+  section{
+    padding:52px 28px;
+    overflow:hidden;
+  }
+  section + section{border-top:0;}
+  section::after{
+    content:"✦";
+    position:absolute; left:50%; bottom:-9px; transform:translateX(-50%);
+    color:var(--gold-soft); font-size:.75rem; opacity:.8; z-index:2;
+  }
+  section:last-of-type::after{display:none;}
+  .card{
+    background:rgba(255,250,243,.72);
+    backdrop-filter:blur(7px);
+    border:1px solid rgba(184,148,90,.28);
+    border-radius:24px;
+    box-shadow:0 16px 42px rgba(91,62,48,.09);
+  }
+  .eyebrow{letter-spacing:.22em;color:var(--gold);}
+  .monogram{
+    position:relative;
+    font-size:4rem;
+    color:var(--rust);
+    text-shadow:0 4px 18px rgba(159,98,93,.14);
+    animation:monogramFloat 4s ease-in-out infinite;
+  }
+  .monogram::before,.monogram::after{
+    content:"";
+    position:absolute; top:50%; width:54px; height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold-soft));
+  }
+  .monogram::before{right:calc(50% + 62px);}
+  .monogram::after{left:calc(50% + 62px);transform:scaleX(-1);}
+  @keyframes monogramFloat{50%{transform:translateY(-4px)}}
+  h1.names{font-size:2rem;letter-spacing:.035em;}
+  .and{color:var(--gold);}
+  .venue{max-width:320px;margin:10px auto 0;line-height:1.5;}
+  blockquote{
+    position:relative;
+    font-size:1.06rem;
+    padding:28px 24px;
+    background:rgba(242,231,215,.42);
+    border-radius:20px;
+  }
+  blockquote::before,blockquote::after{
+    content:"“";position:absolute;color:var(--gold-soft);font-family:Georgia;font-size:4rem;line-height:1;
+  }
+  blockquote::before{left:10px;top:2px}
+  blockquote::after{content:"”";right:10px;bottom:-16px}
+  .couple-box{
+    border-color:rgba(184,148,90,.30);
+    border-radius:18px;
+    box-shadow:inset 0 0 30px rgba(184,148,90,.05);
+  }
+  .timeline-head{
+    background:linear-gradient(135deg,var(--rust),#b97970);
+    box-shadow:0 8px 20px rgba(112,69,66,.18);
+    letter-spacing:.08em;
+  }
+  .t-item::before{
+    background:var(--gold);
+    box-shadow:0 0 0 5px rgba(184,148,90,.10);
+  }
+  .t-item{border-left-color:rgba(184,148,90,.55);}
+  .btn{
+    background:linear-gradient(135deg,var(--rust),#b97970);
+    box-shadow:0 8px 18px rgba(159,98,93,.18);
+    transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  }
+  .btn:hover{transform:translateY(-2px);filter:brightness(1.03);box-shadow:0 12px 24px rgba(159,98,93,.22);}
+  .btn.outline{background:rgba(255,250,243,.7);box-shadow:none;}
+  nav.dock{
+    background:rgba(255,250,243,.82);
+    border-color:rgba(184,148,90,.25);
+    box-shadow:0 12px 30px rgba(61,48,40,.18);
+  }
+  nav.dock .ic{
+    background:linear-gradient(135deg,var(--gold),#c6a56d);
+    box-shadow:0 4px 10px rgba(184,148,90,.18);
+  }
+  .sheet{
+    background:rgba(251,247,239,.97);
+    box-shadow:0 -18px 50px rgba(61,48,40,.16);
+  }
+  .gb-item{
+    background:rgba(255,250,243,.7);
+    border-color:rgba(184,148,90,.20);
+  }
+
+  /* Cover */
+  #cover{
+    background:
+      radial-gradient(circle at 50% 35%, rgba(255,250,243,.92), transparent 34%),
+      linear-gradient(135deg,#f0e2d2,#fbf7ef 50%,#ead4cf);
+  }
+  #cover .half{
+    background:linear-gradient(180deg,rgba(242,231,215,.97),rgba(251,247,239,.97));
+  }
+  .seal{
+    width:132px;height:132px;
+    background:radial-gradient(circle at 35% 30%,#dfc58f,#a66a64 72%,#704542);
+    box-shadow:0 15px 38px rgba(112,69,66,.25), inset 0 0 0 1px rgba(255,250,243,.28);
+    animation:sealPulse 3s ease-in-out infinite;
+  }
+  .seal::before{
+    content:"";
+    position:absolute;inset:8px;border:1px solid rgba(255,250,243,.55);border-radius:50%;
+  }
+  @keyframes sealPulse{50%{transform:scale(1.025);box-shadow:0 20px 44px rgba(112,69,66,.28),inset 0 0 0 1px rgba(255,250,243,.35)}}
+  .tap-hint{animation:hintPulse 2.2s ease-in-out infinite;}
+  @keyframes hintPulse{50%{opacity:.5;transform:translateY(-3px)}}
+
+  /* Decorative floating petals */
+  .petal-field{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+  .petal{
+    position:absolute;width:8px;height:12px;border-radius:80% 20% 80% 20%;
+    background:rgba(184,148,90,.34);
+    animation:petalFall linear infinite;
+  }
+  @keyframes petalFall{
+    0%{transform:translate3d(0,-20px,0) rotate(0deg);opacity:0}
+    12%{opacity:.8}
+    100%{transform:translate3d(45px,115vh,0) rotate(320deg);opacity:0}
+  }
+
+  /* Reveal animations */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.75,.25,1);}
+  .reveal.visible{opacity:1;transform:none;}
+  .stagger > *{opacity:0;transform:translateY(16px);}
+  .stagger.visible > *{animation:staggerIn .65s ease forwards;}
+  .stagger.visible > *:nth-child(2){animation-delay:.08s}
+  .stagger.visible > *:nth-child(3){animation-delay:.16s}
+  .stagger.visible > *:nth-child(4){animation-delay:.24s}
+  @keyframes staggerIn{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+  }
+
+  /* Music control */
+  .music-btn{
+    position:fixed;right:18px;top:18px;z-index:45;
+    width:46px;height:46px;border-radius:50%;border:1px solid rgba(184,148,90,.35);
+    background:rgba(255,250,243,.86);backdrop-filter:blur(8px);
+    color:var(--rust);box-shadow:0 8px 20px rgba(61,48,40,.15);
+    cursor:pointer;font-size:1.05rem;
+  }
+  .music-btn.playing{animation:musicSpin 4s linear infinite;}
+  @keyframes musicSpin{to{transform:rotate(360deg)}}
+  .language-btn{
+    position:fixed;right:72px;top:18px;z-index:62;
+    min-width:46px;height:46px;padding:0 10px;border-radius:24px;
+    border:1px solid rgba(184,148,90,.35);background:rgba(255,250,243,.92);
+    color:var(--rust);box-shadow:0 8px 20px rgba(61,48,40,.15);
+    cursor:pointer;font-family:'EB Garamond',serif;font-size:.88rem;font-weight:600;
+  }
+
+
+  #music-info{
+    position:fixed;right:18px;top:72px;z-index:44;
+    max-width:220px;padding:10px 13px;border-radius:14px;
+    background:rgba(255,250,243,.92);backdrop-filter:blur(10px);
+    border:1px solid rgba(184,148,90,.25);
+    box-shadow:0 10px 26px rgba(61,48,40,.12);
+    opacity:0;transform:translateY(-8px);pointer-events:none;
+    transition:opacity .35s ease,transform .35s ease;
+    color:var(--ink);font-size:.72rem;line-height:1.35;
+  }
+  #music-info.show{opacity:1;transform:none;}
+  #music-title{display:block;font-family:Georgia,serif;font-size:.82rem;color:var(--rust);}
+  #music-status{display:block;opacity:.65;margin-top:2px;}
+
+
+  /* =========================================================
+     FINAL WEDDING THEME — CLEAN WHITE + STRONG ACCENTS
+     ========================================================= */
+  :root{
+    --cream:#ffffff !important;
+    --cream2:#ffffff !important;
+    --white:#ffffff !important;
+    --ink:#242124 !important;
+    --ink-soft:#6f6870 !important;
+    --rust:#8d2941 !important;
+    --rust-dark:#651d30 !important;
+    --gold:#c49a45 !important;
+    --gold-soft:#e4c982 !important;
+    --blush:#f8eef1 !important;
+    --line:rgba(141,41,65,.14) !important;
+  }
+  body{
+    background:#f6f3f4 !important;
+  }
+  .phone{
+    background:#fff !important;
+  }
+  section{
+    background:#fff;
+  }
+  section + section{
+    border-top:1px solid rgba(141,41,65,.09);
+  }
+  section::after{color:var(--gold) !important;}
+  .card{
+    background:#fff !important;
+    border:1px solid rgba(141,41,65,.13) !important;
+    box-shadow:0 14px 36px rgba(65,30,40,.07) !important;
+  }
+  .eyebrow,.and,blockquote .src{color:var(--gold) !important;}
+  .monogram,h1.names,.hashtag,.bismillah{color:var(--rust) !important;}
+  .date-line{color:var(--rust) !important;}
+  .venue,.date-line .en,.invite-text .en,.t-label,.greet-ar,.t-label,.loading,.empty{
+    color:var(--ink-soft) !important;
+  }
+  blockquote{
+    background:#fbf7f8 !important;
+    border:1px solid rgba(196,154,69,.16);
+  }
+  .couple-box{
+    background:#fff !important;
+    border-color:rgba(196,154,69,.28) !important;
+  }
+  .timeline-head{
+    background:linear-gradient(135deg,#8d2941,#aa4058) !important;
+    color:#fff !important;
+  }
+  .t-item{border-left-color:rgba(196,154,69,.55) !important;}
+  .t-item::before{background:var(--gold) !important;border-color:#fff !important;}
+
+  /* All main action buttons centered */
+  .btn{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    text-align:center !important;
+    width:min(100%,320px) !important;
+    margin:12px auto 0 !important;
+    background:linear-gradient(135deg,#8d2941,#a83b55) !important;
+    color:#fff !important;
+    border:1px solid rgba(141,41,65,.18) !important;
+    box-shadow:0 9px 22px rgba(141,41,65,.16) !important;
+  }
+  .btn.outline{
+    background:#fff !important;
+    color:var(--rust) !important;
+    border:1.5px solid rgba(141,41,65,.35) !important;
+    box-shadow:0 5px 14px rgba(65,30,40,.06) !important;
+  }
+  .btn:hover{transform:translateY(-2px) !important;}
+
+  /* Cover stays predominantly white */
+  #cover{
+    background:#fff !important;
+  }
+  #cover .half{
+    background:linear-gradient(180deg,#fff,#fbf8f9) !important;
+    border-color:rgba(141,41,65,.10) !important;
+  }
+  .seal{
+    background:radial-gradient(circle at 35% 30%,#dfbd6d,#9b304a 70%,#651d30) !important;
+    color:#fff !important;
+  }
+  .tap-hint{color:var(--rust) !important;}
+
+  /* Centralized bottom navigation */
+  nav.dock{
+    background:rgba(255,255,255,.96) !important;
+    border:1px solid rgba(141,41,65,.14) !important;
+    box-shadow:0 12px 30px rgba(40,25,30,.13) !important;
+  }
+  nav.dock button{
+    flex:1 !important;
+    justify-content:center !important;
+    text-align:center !important;
+    color:var(--ink) !important;
+  }
+  nav.dock .ic{
+    background:linear-gradient(135deg,#c49a45,#dfbd6d) !important;
+    color:#fff !important;
+  }
+
+  /* Forms and sheets remain white and centered */
+  .sheet{background:#fff !important;}
+  .sheet .sub,.field label{color:var(--ink-soft) !important;}
+  .sheet .close{
+    background:#fff !important;
+    color:var(--rust) !important;
+    border-color:rgba(141,41,65,.20) !important;
+  }
+  .field input,.field select,.field textarea{
+    background:#fff !important;
+    color:var(--ink) !important;
+    border-color:rgba(141,41,65,.16) !important;
+  }
+  .pill,.addr-box,.gb-item{
+    background:#fff !important;
+    border-color:rgba(141,41,65,.13) !important;
+  }
+  .pill b,.row .acts a{color:var(--rust) !important;}
+
+  .music-btn{
+    background:#fff !important;
+    color:var(--rust) !important;
+    border-color:rgba(141,41,65,.20) !important;
+  }
+  #music-info{
+    background:#fff !important;
+    border-color:rgba(141,41,65,.15) !important;
+  }
+  #music-title{color:var(--rust) !important;}
+
+  /* Keep every button/content action visually centered on small screens */
+  button.btn, a.btn{margin-left:auto !important;margin-right:auto !important;}
+  .sheet form .btn{margin-left:auto !important;margin-right:auto !important;}
+  @media(max-width:480px){
+    section{padding-left:22px;padding-right:22px;}
+    .btn{max-width:310px !important;}
+  }
+
+
+/* LIVE WEDDING MOTION + CENTERED LAYOUT */
+.phone, .phone main, section, #hero, .sheet, #cover { text-align:center; }
+.phone{margin:0 auto;}
+section>p,section>.eyebrow,section>h1,section>h2,section>h3,section>.date-line,section>.venue,section>.invite-text,section>.parents,section>.couple-box,section>blockquote{margin-left:auto;margin-right:auto;}
+#hero{min-height:650px;display:flex;flex-direction:column;align-items:center;justify-content:center;isolation:isolate;}
+#hero>.eyebrow,#hero>p,#hero>.monogram,#hero>.names,#hero>.date-line,#hero>.venue{position:relative;z-index:3;}
+#hero>.eyebrow{animation:elegantFadeUp 1s .15s both;}
+#hero>p[style*="italic"]{animation:elegantFadeUp 1s .28s both;}
+#hero>.monogram{animation:monogramFloat 4s ease-in-out infinite,elegantFadeUp 1s .4s both;}
+#hero>.names{animation:elegantFadeUp 1s .55s both;}
+#hero>.date-line{animation:elegantFadeUp 1s .7s both;}
+#hero>.venue{animation:elegantFadeUp 1s .85s both;}
+@keyframes elegantFadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+#hero::before{content:"";position:absolute;width:230px;height:230px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(196,154,69,.12),rgba(141,41,65,.035) 42%,transparent 72%);filter:blur(4px);animation:liveGlow 5s ease-in-out infinite;pointer-events:none;z-index:0;}
+@keyframes liveGlow{0%,100%{opacity:.55;transform:translate(-50%,-50%) scale(.92)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
+#hero::after{content:"✦  ·  ✦";position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--gold);letter-spacing:.45em;font-size:.72rem;opacity:.65;animation:ornamentPulse 3s ease-in-out infinite;pointer-events:none;}
+@keyframes ornamentPulse{50%{opacity:1;letter-spacing:.58em}}
+#cover::before{content:"";position:absolute;width:55%;height:150%;top:-25%;left:-75%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),rgba(228,201,130,.20),transparent);filter:blur(12px);animation:coverLightSweep 7s ease-in-out infinite;pointer-events:none;}
+@keyframes coverLightSweep{0%,25%{left:-75%;opacity:0}40%{opacity:.7}70%,100%{left:120%;opacity:0}}
+.seal::after{content:"";position:absolute;inset:-13px;border:1px solid rgba(196,154,69,.35);border-radius:50%;animation:sealRing 3.5s ease-in-out infinite;}
+@keyframes sealRing{0%,100%{transform:scale(.94);opacity:.25}50%{transform:scale(1.08);opacity:.8}}
+.live-sparkles{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+.live-sparkle{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--gold-soft);box-shadow:0 0 10px rgba(228,201,130,.65);opacity:0;animation:sparkleRise var(--sparkle-duration) ease-in-out infinite;animation-delay:var(--sparkle-delay);}
+.live-sparkle::after{content:"✦";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:var(--gold);font-size:9px;}
+@keyframes sparkleRise{0%{transform:translate3d(0,30px,0) scale(.5) rotate(0);opacity:0}25%{opacity:.8}65%{opacity:.55}100%{transform:translate3d(var(--sparkle-drift),-110px,0) scale(1.05) rotate(90deg);opacity:0}}
+.petal{box-shadow:0 2px 8px rgba(141,41,65,.08);will-change:transform,opacity;}
+.butterfly{will-change:transform;filter:drop-shadow(0 3px 5px rgba(141,41,65,.12));}
+.btn,button.btn,a.btn,.sheet .btn,.sheet form .btn{margin-left:auto!important;margin-right:auto!important;}
+.sheet form{text-align:center}.sheet .field,.sheet .pax-row{text-align:left}.sheet .pax-row{justify-content:center;}
+#guestbook-list{width:100%;max-width:380px;margin-left:auto!important;margin-right:auto!important;}
+#rsvp-summary{justify-content:center!important;}
+nav.dock{left:50%!important;right:auto!important;margin:0!important;}
+nav.dock button{flex:1 1 0!important;min-width:0;justify-content:center!important;text-align:center!important;}
+nav.dock .ic{margin-left:auto;margin-right:auto;}
+.btn:active{transform:translateY(1px) scale(.985)!important;}
+@media(prefers-reduced-motion:reduce){#hero::before,#hero::after,#cover::before,.seal::after,.live-sparkle{animation:none!important}}
+@media(max-width:480px){#hero{min-height:620px;padding-left:20px;padding-right:20px}#hero .monogram{font-size:3.7rem}h1.names{font-size:1.9rem;line-height:1.2}.venue,.invite-text{max-width:310px}.btn{max-width:310px!important}}
+
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="live-sparkles" aria-hidden="true">
+    <span class="live-sparkle" style="left:8%;bottom:16%;--sparkle-duration:6s;--sparkle-delay:0s;--sparkle-drift:18px"></span>
+    <span class="live-sparkle" style="left:20%;bottom:22%;--sparkle-duration:7s;--sparkle-delay:1.4s;--sparkle-drift:-12px"></span>
+    <span class="live-sparkle" style="left:34%;bottom:12%;--sparkle-duration:5.8s;--sparkle-delay:2.2s;--sparkle-drift:22px"></span>
+    <span class="live-sparkle" style="left:52%;bottom:18%;--sparkle-duration:7.4s;--sparkle-delay:.8s;--sparkle-drift:-18px"></span>
+    <span class="live-sparkle" style="left:68%;bottom:14%;--sparkle-duration:6.4s;--sparkle-delay:3s;--sparkle-drift:16px"></span>
+    <span class="live-sparkle" style="left:82%;bottom:24%;--sparkle-duration:7.1s;--sparkle-delay:1.8s;--sparkle-drift:-20px"></span>
+    <span class="live-sparkle" style="left:92%;bottom:10%;--sparkle-duration:5.6s;--sparkle-delay:2.7s;--sparkle-drift:10px"></span>
+  </div>
+
+  <div class="petal-field" aria-hidden="true">
+    <span class="petal" style="left:8%;animation-duration:11s;animation-delay:1s;"></span>
+    <span class="petal" style="left:23%;animation-duration:14s;animation-delay:4s;"></span>
+    <span class="petal" style="left:42%;animation-duration:12s;animation-delay:0s;"></span>
+    <span class="petal" style="left:67%;animation-duration:15s;animation-delay:3s;"></span>
+    <span class="petal" style="left:84%;animation-duration:13s;animation-delay:6s;"></span>
+  </div>
+  <button class="music-btn" id="music-btn" aria-label="Mainkan muzik" title="Muzik">♫</button>
+  <button class="language-btn" id="language-toggle" type="button" aria-label="Switch language to English" title="English">EN</button>
+
+  <!-- COVER -->
+  <div id="cover">
+    <div class="half l"></div>
+    <div class="half r"></div>
+    <div class="seal">H&nbsp;R</div>
+    <div class="tap-hint"><span style="display:block;margin-bottom:8px;letter-spacing:.18em;font-size:.68rem;">HAFIZ &nbsp;•&nbsp; RUQAYYAH</span><span data-i18n="coverHint">Ketuk untuk buka</span></div>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="reveal stagger">
+      <div class="corner tl"><svg viewBox="0 0 100 100"><path d="M2 60 Q20 20 60 10 Q40 30 30 50 Q50 30 70 20" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="60" cy="12" r="6" fill="currentColor" opacity=".6"/><circle cx="30" cy="50" r="5" fill="currentColor" opacity=".4"/></svg></div>
+      <div class="corner tr"><svg viewBox="0 0 100 100"><path d="M2 60 Q20 20 60 10 Q40 30 30 50 Q50 30 70 20" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="60" cy="12" r="6" fill="currentColor" opacity=".6"/><circle cx="30" cy="50" r="5" fill="currentColor" opacity=".4"/></svg></div>
+      <span class="butterfly" style="left:14%; top:18%;">🦋</span>
+      <span class="butterfly" style="right:16%; top:30%; animation-delay:1.4s;">🦋</span>
+      <p class="eyebrow serif" data-i18n="heroEyebrow">UNDANGAN MAJLIS PERKAHWINAN</p>
+      <p data-i18n="heroSub" style="font-style:italic; color:var(--ink-soft); font-size:.85rem; margin-top:-6px;">Invitation to the Wedding of</p>
+      <div class="monogram">H<span class="and">&amp;</span>R</div>
+      <h1 class="names">HAFIZ <span class="and" data-i18n="and">dan</span> RUQAYYAH</h1>
+      <div class="date-line">
+        <span data-i18n="heroDate">SABTU, 12 DISEMBER 2026</span>
+      </div>
+      <div class="venue">Dewan Serbaguna MBSJ USJ7, Subang Jaya, Selangor</div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="reveal">
+      <blockquote>
+        <span data-i18n="quranQuote">"Dan Kami ciptakan kamu berpasang-pasangan"</span>
+        <span class="src">Surah An-Naba' (78:8)</span>
+      </blockquote>
+    </section>
+
+    <!-- GREETING / PARENTS -->
+    <section class="reveal">
+      <div class="bismillah serif">بسم الله الرحمن الرحيم</div>
+      <p class="greet-ar">Assalamualaikum Warahmatullahi Wabarakatuh</p>
+      <p class="parents">KAMARUDIN BIN ABD HAMID<br><span class="and" style="font-size:1.05rem;">&amp;</span><br>TIMAH @ ZAHARAH BINTI MAT</p>
+      <p class="invite-text" data-i18n="inviteText">Dengan izin Allah SWT dan rasa kesyukuran, kami menjemput Dato' / Datin / Tuan / Puan / Encik / Cik sekeluarga ke Majlis Perkahwinan Putera kami dan Pasangan.</p>
+      <div class="couple-box">
+        Kamarul Hafiz Bin Kamarudin<br><span class="and" style="font-size:1.1rem;">&amp;</span><br>Tengku Ruqayyah Binti Tengku Shahrom
+      </div>
+    </section>
+
+    <!-- ITINERARY -->
+    <section class="reveal">
+      <div class="card" style="padding-top:0;">
+        <div class="timeline-head" data-i18n="scheduleTitle">ATUR CARA MAJLIS</div>
+        <p data-i18n="eventDate" style="color:var(--ink-soft); font-size:.85rem; margin-top:-6px;">Sabtu, 12 Disember 2026</p>
+        <div class="timeline">
+          <div class="t-item"><div class="t-time" data-i18n="timeStart">11:00 pagi</div><div class="t-label" data-i18n="scheduleStart">Majlis Bermula</div></div>
+          <div class="t-item"><div class="t-time" data-i18n="timeArrival">12:00 tengah hari</div><div class="t-label" data-i18n="scheduleArrival">Ketibaan Pengantin</div></div>
+          <div class="t-item"><div class="t-time" data-i18n="timeEnd">4:00 petang</div><div class="t-label" data-i18n="scheduleEnd">Majlis Berakhir</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATTENDANCE / RSVP -->
+    <section class="reveal">
+      <div class="card">
+        <p class="eyebrow serif" data-i18n="rsvpEyebrow" style="font-size:.8rem;">MAKLUMAT KEHADIRAN</p>
+        <p data-i18n="attendanceSub" style="color:var(--ink-soft); font-size:.78rem; letter-spacing:.1em; margin-top:-8px;">ATTENDANCE</p>
+        <p style="font-size:.95rem; max-width:280px; margin:16px auto;">
+          <span data-i18n="rsvpInstructions">Sila maklumkan kehadiran yang telah ditetapkan melalui butang RSVP di bawah.</span>
+        </p>
+        <div id="rsvp-summary" class="summary-pills"></div>
+        <button class="btn" onclick="openSheet('rsvp')">✉️ RSVP</button>
+      </div>
+    </section>
+
+    <!-- GUESTBOOK -->
+    <section class="reveal">
+      <p class="eyebrow serif" data-i18n="guestbookEyebrow" style="font-size:.8rem;">BUKU TETAMU</p>
+      <p data-i18n="guestbookSub" style="color:var(--ink-soft); font-size:.78rem; letter-spacing:.1em; margin-top:-8px;">GUESTBOOK</p>
+      <div id="guestbook-list" style="margin-top:18px; text-align:left;">
+        <p class="loading" data-i18n="loadingGuestbook">Memuatkan ucapan…</p>
+      </div>
+      <button class="btn outline" onclick="openSheet('ucapan')"><span>✏️ </span><span data-i18n="writeGreeting">Tulis Ucapan</span></button>
+    </section>
+
+    <!-- THANK YOU -->
+    <section class="reveal">
+      <p data-i18n="thankYouTitle" style="font-size:1rem;">Terima kasih</p>
+      <p data-i18n="thankYouText" style="font-style:italic; color:var(--ink-soft); max-width:280px; margin:8px auto;">Kehadiran anda adalah hadiah paling bermakna buat kami.</p>
+      <div class="hashtag">#HafizRuqayyah2026</div>
+    </section>
+
+    <footer data-i18n="footer">Kad Jemputan Digital — Hafiz &amp; Ruqayyah</footer>
+  </main>
+
+  <!-- BOTTOM NAV -->
+  <nav class="dock">
+    <button onclick="location.reload()"><span class="ic">↻</span><span data-i18n="navRefresh">Refresh</span></button>
+    <button onclick="openSheet('kalendar')"><span class="ic">📅</span><span data-i18n="navCalendar">Kalendar</span></button>
+    <button onclick="openSheet('hubungi')"><span class="ic">👤</span><span data-i18n="navContact">Hubungi</span></button>
+    <button onclick="openSheet('lokasi')"><span class="ic">📍</span><span data-i18n="navLocation">Lokasi</span></button>
+    <button onclick="openSheet('nota')"><span class="ic">ℹ️</span><span data-i18n="navNotes">Nota</span></button>
+  </nav>
+
+  <!-- SHEETS -->
+  <div class="sheet-backdrop" id="backdrop" onclick="closeSheet()"></div>
+
+  <div class="sheet" id="sheet-rsvp">
+    <button class="close" onclick="closeSheet()">✕</button>
+    <h3>RSVP</h3>
+    <div class="sub" data-i18n="rsvpSub">Maklumat Kehadiran</div>
+    <div id="rsvp-alert-area"></div>
+    <form id="rsvp-form">
+      <div class="field">
+        <label data-i18n="fullNameLabel">Nama Penuh</label>
+        <input type="text" id="rsvp-nama" required maxlength="150" placeholder="Nama anda" data-i18n-placeholder="yourName">
+      </div>
+      <div class="field">
+        <label data-i18n="phoneLabel">No. Telefon (pilihan)</label>
+        <input type="tel" id="rsvp-telefon" maxlength="30" placeholder="01X-XXXXXXX">
+      </div>
+      <div class="pax-row">
+        <div class="field">
+          <label data-i18n="attendanceLabel">Kehadiran</label>
+          <select id="rsvp-kehadiran">
+            <option value="hadir" data-i18n="attending">Hadir</option>
+            <option value="tidak_hadir" data-i18n="notAttending">Tidak Hadir</option>
+            <option value="belum_pasti" data-i18n="maybe">Belum Pasti</option>
+          </select>
+        </div>
+        <div class="field">
+          <label data-i18n="guestCount">Bilangan Tetamu</label>
+          <input type="number" id="rsvp-pax" min="1" max="10" value="1">
+        </div>
+      </div>
+      <div class="field">
+        <label data-i18n="notesOptional">Catatan (pilihan)</label>
+        <textarea id="rsvp-catatan" maxlength="255" placeholder="Contoh: alahan makanan, dsb." data-i18n-placeholder="notesPlaceholder"></textarea>
+      </div>
+      <button class="btn" id="rsvp-submit" type="submit" data-i18n="sendRsvp">Hantar RSVP</button>
+    </form>
+  </div>
+
+  <div class="sheet" id="sheet-ucapan">
+    <button class="close" onclick="closeSheet()">✕</button>
+    <h3 data-i18n="writeGreeting">Tulis Ucapan</h3>
+    <div class="sub" data-i18n="guestbookSub">Buku Tetamu</div>
+    <div id="gb-alert-area"></div>
+    <form id="gb-form">
+      <div class="field">
+        <label data-i18n="nameLabel">Nama</label>
+        <input type="text" id="gb-nama" required maxlength="150" placeholder="Nama anda" data-i18n-placeholder="yourName">
+      </div>
+      <div class="field">
+        <label data-i18n="greetingLabel">Ucapan</label>
+        <textarea id="gb-mesej" required maxlength="500" placeholder="Tulis ucapan anda di sini..." data-i18n-placeholder="greetingPlaceholder"></textarea>
+      </div>
+      <button class="btn" id="gb-submit" type="submit" data-i18n="sendGreeting">Hantar Ucapan</button>
+    </form>
+  </div>
+
+  <div class="sheet" id="sheet-kalendar">
+    <button class="close" onclick="closeSheet()">✕</button>
+    <h3 data-i18n="calendarTitle">Kalendar</h3>
+    <div class="sub" data-i18n="calendarSub">Calendar</div>
+    <div class="addr-box" style="text-align:center;">
+      <b data-i18n="weddingEvent" style="color:var(--gold); letter-spacing:.05em;">MAJLIS PERKAHWINAN</b><br>
+      <span data-i18n="eventDate">Sabtu, 12 Disember 2026</span>
+    </div>
+    <a class="btn" id="google-calendar-link" target="_blank" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Majlis%20Perkahwinan%20Hafiz%20%26%20Ruqayyah&dates=20261212T030000Z/20261212T090000Z&location=Dewan%20Serbaguna%20MBSJ%20USJ7%2C%20Subang%20Jaya">Google Calendar</a>
+    <a class="btn outline" id="ics-download" href="#">Apple / Outlook (.ics)</a>
+  </div>
+
+  <div class="sheet" id="sheet-hubungi">
+    <button class="close" onclick="closeSheet()">✕</button>
+    <h3 data-i18n="contactTitle">Hubungi</h3>
+    <div class="sub" data-i18n="contactSub">Contact</div>
+    <div class="row"><div class="who"><b>Zuraidah</b><span data-i18n="sisterIda">Ahli Keluarga</span></div></div>
+    <div class="row"><div class="who"><b>Sham</b><span data-i18n="familyMember">Ahli Keluarga</span></div></div>
+    <div class="row"><div class="who"><b>Nor</b><span data-i18n="familyMember">Ahli Keluarga</span></div></div>
+  </div>
+
+  <div class="sheet" id="sheet-lokasi">
+    <button class="close" onclick="closeSheet()">✕</button>
+    <h3 data-i18n="locationTitle">Lokasi</h3>
+    <div class="sub" data-i18n="locationSub">Location</div>
+    <div class="addr-box">
+      <b data-i18n="weddingEvent" style="color:var(--gold); letter-spacing:.05em; display:block; margin-bottom:4px;">MAJLIS PERKAHWINAN</b>
+      <span data-i18n="eventDate">Sabtu, 12 Disember 2026</span><br>
+      Dewan Serbaguna MBSJ USJ7, 8, Jalan USJ 7/3a, Usj 7, 47610 Subang Jaya, Selangor
+    </div>
+    <a class="btn" target="_blank" href="https://waze.com/ul?q=Dewan%20Serbaguna%20MBSJ%20USJ7%20Subang%20Jaya">Waze</a>
+    <a class="btn outline" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Dewan+Serbaguna+MBSJ+USJ7+Subang+Jaya">Google Map</a>
+  </div>
+
+  <div class="sheet" id="sheet-nota">
+    <button class="close" onclick="closeSheet()">✕</button>
+    <h3 data-i18n="notesTitle">Nota</h3>
+    <div class="sub" data-i18n="notesSub">Notes</div>
+    <p class="note-p" data-i18n="dressCode">Kod pakaian: warna pastel digalakkan.</p>
+    <p class="note-p" data-i18n="noGifts">Tiada keperluan bawa hadiah — kehadiran anda sudah cukup bermakna.</p>
+    <p class="note-p" data-i18n="parking">Ruang letak kereta disediakan di kawasan dewan.</p>
+  </div>
+
+</div>
+
+<script>
+  // ============== Tukar ini jika folder api/ diletak di path lain ==============
+  const API_BASE = 'api';
+
+  const translations = {
+    ms: {
+      coverHint: 'Ketuk untuk buka',
+      heroEyebrow: 'UNDANGAN MAJLIS PERKAHWINAN',
+      heroSub: 'Undangan ke Majlis Perkahwinan',
+      and: 'dan',
+      heroDate: 'SABTU, 12 DISEMBER 2026',
+      quranQuote: '"Dan Kami ciptakan kamu berpasang-pasangan"',
+      inviteText: "Dengan izin Allah SWT dan rasa kesyukuran, kami menjemput Dato' / Datin / Tuan / Puan / Encik / Cik sekeluarga ke Majlis Perkahwinan Putera kami dan Pasangan.",
+      scheduleTitle: 'ATUR CARA MAJLIS',
+      eventDate: 'Sabtu, 12 Disember 2026',
+      timeStart: '11:00 pagi',
+      scheduleStart: 'Majlis Bermula',
+      timeArrival: '12:00 tengah hari',
+      scheduleArrival: 'Ketibaan Pengantin',
+      timeEnd: '4:00 petang',
+      scheduleEnd: 'Majlis Berakhir',
+      rsvpEyebrow: 'MAKLUMAT KEHADIRAN',
+      attendanceSub: 'PENGESAHAN KEHADIRAN',
+      rsvpInstructions: 'Sila maklumkan kehadiran yang telah ditetapkan melalui butang RSVP di bawah.',
+      guestbookEyebrow: 'BUKU TETAMU',
+      guestbookSub: 'BUKU TETAMU',
+      loadingGuestbook: 'Memuatkan ucapan…',
+      writeGreeting: 'Tulis Ucapan',
+      thankYouTitle: 'Terima kasih',
+      thankYouText: 'Kehadiran anda adalah hadiah paling bermakna buat kami.',
+      footer: 'Kad Jemputan Digital — Hafiz & Ruqayyah',
+      navRefresh: 'Muat Semula',
+      navCalendar: 'Kalendar',
+      navContact: 'Hubungi',
+      navLocation: 'Lokasi',
+      navNotes: 'Nota',
+      rsvpSub: 'Maklumat Kehadiran',
+      fullNameLabel: 'Nama Penuh',
+      yourName: 'Nama anda',
+      phoneLabel: 'No. Telefon (pilihan)',
+      attendanceLabel: 'Kehadiran',
+      attending: 'Hadir',
+      notAttending: 'Tidak Hadir',
+      maybe: 'Belum Pasti',
+      guestCount: 'Bilangan Tetamu',
+      notesOptional: 'Catatan (pilihan)',
+      notesPlaceholder: 'Contoh: alahan makanan, dsb.',
+      sendRsvp: 'Hantar RSVP',
+      nameLabel: 'Nama',
+      greetingLabel: 'Ucapan',
+      greetingPlaceholder: 'Tulis ucapan anda di sini...',
+      sendGreeting: 'Hantar Ucapan',
+      calendarTitle: 'Kalendar',
+      calendarSub: 'Kalendar',
+      weddingEvent: 'MAJLIS PERKAHWINAN',
+      contactTitle: 'Hubungi',
+      contactSub: 'Maklumat Hubungan',
+      sisterIda: 'Kakak / Ida',
+      familyMember: 'Ahli Keluarga',
+      locationTitle: 'Lokasi',
+      locationSub: 'Lokasi Majlis',
+      notesTitle: 'Nota',
+      notesSub: 'Maklumat Tambahan',
+      dressCode: 'Kod pakaian: warna pastel digalakkan.',
+      noGifts: 'Tiada keperluan bawa hadiah — kehadiran anda sudah cukup bermakna.',
+      parking: 'Ruang letak kereta disediakan di kawasan dewan.',
+      switchLanguage: 'Tukar bahasa ke Bahasa Inggeris',
+      musicLabel: 'Mainkan muzik',
+      musicTitle: 'Muzik',
+      summaryAttending: 'akan hadir',
+      summaryResponses: 'respons',
+      rsvpClosed: 'RSVP Telah Ditutup',
+      rsvpClosedMessage: 'Maaf, RSVP telah ditutup',
+      rsvpSuccess: 'Terima kasih! RSVP anda telah direkodkan.',
+      rsvpNameError: 'Nama diperlukan.',
+      rsvpGenericError: 'Gagal menghantar. Sila semak sambungan internet anda.',
+      greetingEmpty: 'Belum ada ucapan. Jadilah yang pertama!',
+      greetingLoadError: 'Gagal memuatkan ucapan. Sila cuba lagi.',
+      greetingSuccess: 'Terima kasih atas ucapan anda!',
+      greetingRequired: 'Nama dan mesej diperlukan.',
+      greetingTooLong: 'Mesej terlalu panjang (maksimum 500 aksara).',
+      genericError: 'Ralat tidak diketahui.',
+      musicPlaylist: 'Senarai Muzik Perkahwinan',
+      musicLoading: 'Memuatkan...',
+      songCount: 'lagu',
+      noMusic: 'Tiada lagu',
+      musicNotFound: 'Fail muzik tidak dijumpai',
+      checkMusicFolder: 'Semak folder assets/music',
+      musicPaused: 'Muzik dijeda',
+      tapToPlay: 'Tekan ♫ untuk mainkan',
+      tapToResume: 'Tekan ♫ untuk sambung',
+      playing: 'Sedang dimainkan'
+    },
+    en: {
+      coverHint: 'Tap to open',
+      heroEyebrow: 'WEDDING INVITATION',
+      heroSub: 'You are invited to the wedding of',
+      and: 'and',
+      heroDate: 'SATURDAY, 12 DECEMBER 2026',
+      quranQuote: '"And We created you in pairs"',
+      inviteText: 'With gratitude and the blessings of Allah SWT, we cordially invite you and your family to the wedding of our son and his bride.',
+      scheduleTitle: 'EVENT PROGRAMME',
+      eventDate: 'Saturday, 12 December 2026',
+      timeStart: '11:00 am',
+      scheduleStart: 'Ceremony Begins',
+      timeArrival: '12:00 pm',
+      scheduleArrival: 'Bride and Groom Arrive',
+      timeEnd: '4:00 pm',
+      scheduleEnd: 'Event Ends',
+      rsvpEyebrow: 'ATTENDANCE INFORMATION',
+      attendanceSub: 'ATTENDANCE CONFIRMATION',
+      rsvpInstructions: 'Please confirm your attendance using the RSVP button below.',
+      guestbookEyebrow: 'GUESTBOOK',
+      guestbookSub: 'GUESTBOOK',
+      loadingGuestbook: 'Loading wishes…',
+      writeGreeting: 'Write a Wish',
+      thankYouTitle: 'Thank You',
+      thankYouText: 'Your presence is the most meaningful gift to us.',
+      footer: 'Digital Wedding Invitation — Hafiz & Ruqayyah',
+      navRefresh: 'Refresh',
+      navCalendar: 'Calendar',
+      navContact: 'Contact',
+      navLocation: 'Location',
+      navNotes: 'Notes',
+      rsvpSub: 'Attendance Information',
+      fullNameLabel: 'Full Name',
+      yourName: 'Your name',
+      phoneLabel: 'Phone Number (optional)',
+      attendanceLabel: 'Attendance',
+      attending: 'Attending',
+      notAttending: 'Not Attending',
+      maybe: 'Not Sure Yet',
+      guestCount: 'Number of Guests',
+      notesOptional: 'Notes (optional)',
+      notesPlaceholder: 'Example: food allergies, etc.',
+      sendRsvp: 'Submit RSVP',
+      nameLabel: 'Name',
+      greetingLabel: 'Your Wish',
+      greetingPlaceholder: 'Write your wish here...',
+      sendGreeting: 'Submit Wish',
+      calendarTitle: 'Calendar',
+      calendarSub: 'Calendar',
+      weddingEvent: 'WEDDING RECEPTION',
+      contactTitle: 'Contact',
+      contactSub: 'Contact Information',
+      sisterIda: 'Older Sister / Ida',
+      familyMember: 'Family Member',
+      locationTitle: 'Location',
+      locationSub: 'Event Location',
+      notesTitle: 'Notes',
+      notesSub: 'Additional Information',
+      dressCode: 'Dress code: pastel colours are encouraged.',
+      noGifts: 'No gifts are necessary — your presence is meaningful enough.',
+      parking: 'Parking is available at the hall.',
+      switchLanguage: 'Change language to Bahasa Melayu',
+      musicLabel: 'Play music',
+      musicTitle: 'Music',
+      summaryAttending: 'attending',
+      summaryResponses: 'responses',
+      rsvpClosed: 'RSVP is Closed',
+      rsvpClosedMessage: 'Sorry, RSVP is closed',
+      rsvpSuccess: 'Thank you! Your RSVP has been recorded.',
+      rsvpNameError: 'Name is required.',
+      rsvpGenericError: 'Could not submit. Please check your internet connection.',
+      greetingEmpty: 'No wishes yet. Be the first!',
+      greetingLoadError: 'Could not load wishes. Please try again.',
+      greetingSuccess: 'Thank you for your wish!',
+      greetingRequired: 'Name and message are required.',
+      greetingTooLong: 'Message is too long (maximum 500 characters).',
+      genericError: 'An unknown error occurred.',
+      musicPlaylist: 'Wedding Playlist',
+      musicLoading: 'Loading...',
+      songCount: 'songs',
+      noMusic: 'No songs',
+      musicNotFound: 'Music file not found',
+      checkMusicFolder: 'Check the assets/music folder',
+      musicPaused: 'Music paused',
+      tapToPlay: 'Tap ♫ to play',
+      tapToResume: 'Tap ♫ to resume',
+      playing: 'Playing'
+    }
+  };
+
+  let currentLang = 'ms';
+  try{
+    currentLang = localStorage.getItem('wedding-language') === 'en' ? 'en' : 'ms';
+  }catch(error){
+    console.warn('Language preference storage unavailable:', error);
+  }
+  const t = key => translations[currentLang][key] || translations.ms[key] || key;
+
+  function applyLanguage(language){
+    currentLang = language === 'en' ? 'en' : 'ms';
+    document.documentElement.lang = currentLang;
+    document.title = currentLang === 'en'
+      ? 'Hafiz & Ruqayyah — Wedding Reception'
+      : 'Hafiz & Ruqayyah — Majlis Perkahwinan';
+    document.querySelectorAll('[data-i18n]').forEach(element=>{
+      element.textContent = t(element.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(element=>{
+      element.placeholder = t(element.dataset.i18nPlaceholder);
+    });
+    const languageButton = document.getElementById('language-toggle');
+    languageButton.textContent = currentLang === 'ms' ? 'EN' : 'BM';
+    languageButton.title = t('switchLanguage');
+    languageButton.setAttribute('aria-label', t('switchLanguage'));
+    const musicButton = document.getElementById('music-btn');
+    musicButton.title = t('musicTitle');
+    musicButton.setAttribute('aria-label', t('musicLabel'));
+    try{
+      localStorage.setItem('wedding-language', currentLang);
+    }catch(error){
+      console.warn('Could not save language preference:', error);
+    }
+    loadRsvpStatus();
+    loadGuestbook();
+    updateCalendarLink();
+  }
+
+  document.getElementById('language-toggle').addEventListener('click', ()=>{
+    applyLanguage(currentLang === 'ms' ? 'en' : 'ms');
+  });
+
+  // ---------- Sheets ----------
+  function openSheet(name){
+    document.getElementById('backdrop').classList.add('show');
+    document.getElementById('sheet-'+name).classList.add('show');
+    if (name === 'ucapan') loadGuestbook();
+  }
+  function closeSheet(){
+    document.getElementById('backdrop').classList.remove('show');
+    document.querySelectorAll('.sheet').forEach(function(s){ s.classList.remove('show'); });
+  }
+
+  function updateCalendarLink(){
+    const title = currentLang === 'en'
+      ? 'Wedding Reception Hafiz & Ruqayyah'
+      : 'Majlis Perkahwinan Hafiz & Ruqayyah';
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: title,
+      dates: '20261212T030000Z/20261212T090000Z',
+      location: 'Dewan Serbaguna MBSJ USJ7, Subang Jaya'
+    });
+    document.getElementById('google-calendar-link').href =
+      `https://calendar.google.com/calendar/render?${params.toString()}`;
+  }
+
+  // ---------- Util ----------
+  function escapeHtml(str){
+    return String(str).replace(/[&<>"']/g, function(c){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+    });
+  }
+  function fmtDate(iso){
+    try{
+      const d = new Date(iso.replace(' ', 'T'));
+      return d.toLocaleDateString(currentLang === 'en' ? 'en-MY' : 'ms-MY', { day:'numeric', month:'long', year:'numeric' });
+    }catch(e){ return iso; }
+  }
+
+  // ---------- RSVP ----------
+  async function loadRsvpStatus(){
+    try{
+      const res = await fetch(`${API_BASE}/rsvp.php`);
+      const data = await res.json();
+      if (!data.ok) return;
+
+      const pills = document.getElementById('rsvp-summary');
+      pills.innerHTML = `
+        <span class="pill"><b>${data.ringkasan.jumlah_hadir}</b> ${t('summaryAttending')}</span>
+        <span class="pill"><b>${data.ringkasan.jumlah_rekod}</b> ${t('summaryResponses')}</span>
+      `;
+
+      const submitBtn = document.getElementById('rsvp-submit');
+      const alertArea = document.getElementById('rsvp-alert-area');
+      submitBtn.disabled = !data.rsvp_dibuka;
+      submitBtn.textContent = data.rsvp_dibuka ? t('sendRsvp') : t('rsvpClosed');
+      if (!data.rsvp_dibuka){
+        alertArea.innerHTML = `<div class="alert danger">${t('rsvpClosedMessage')}${data.rsvp_tutup_pada ? (currentLang === 'en' ? ' on ' : ' pada ') + fmtDate(data.rsvp_tutup_pada) : ''}.</div>`;
+      }
+    }catch(e){
+      console.warn('Tidak dapat memuatkan status RSVP:', e);
+    }
+  }
+
+  function translateApiMessage(message){
+    const messageKeys = {
+      'Nama diperlukan.': 'rsvpNameError',
+      'Maaf, RSVP telah ditutup.': 'rsvpClosedMessage',
+      'Nama dan mesej diperlukan.': 'greetingRequired',
+      'Mesej terlalu panjang (maksimum 500 aksara).': 'greetingTooLong',
+      'Method tidak disokong.': 'genericError'
+    };
+    return messageKeys[message] ? t(messageKeys[message]) : escapeHtml(message || t('genericError'));
+  }
+
+  document.getElementById('rsvp-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const alertArea = document.getElementById('rsvp-alert-area');
+    const submitBtn = document.getElementById('rsvp-submit');
+    const payload = {
+      nama: document.getElementById('rsvp-nama').value,
+      telefon: document.getElementById('rsvp-telefon').value,
+      kehadiran: document.getElementById('rsvp-kehadiran').value,
+      bilangan_pax: document.getElementById('rsvp-pax').value,
+      catatan: document.getElementById('rsvp-catatan').value,
+    };
+    submitBtn.disabled = true;
+    try{
+      const res = await fetch(`${API_BASE}/rsvp.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.ok){
+        alertArea.innerHTML = `<div class="alert success">${t('rsvpSuccess')}</div>`;
+        document.getElementById('rsvp-form').reset();
+        loadRsvpStatus();
+      } else {
+        alertArea.innerHTML = `<div class="alert danger">${translateApiMessage(data.error)}</div>`;
+        submitBtn.disabled = false;
+      }
+    }catch(err){
+      alertArea.innerHTML = `<div class="alert danger">${t('rsvpGenericError')}</div>`;
+      submitBtn.disabled = false;
+    }
+  });
+
+  // ---------- Guestbook ----------
+  async function loadGuestbook(){
+    const listEl = document.getElementById('guestbook-list');
+    try{
+      const res = await fetch(`${API_BASE}/guestbook.php?limit=10`);
+      const data = await res.json();
+      if (!data.ok || !data.data.length){
+        listEl.classList.remove('scrollable');
+        listEl.innerHTML = `<p class="empty">${t('greetingEmpty')}</p>`;
+        return;
+      }
+      listEl.classList.toggle('scrollable', data.data.length > 3);
+      listEl.innerHTML = data.data.map(item => `
+        <div class="gb-item">
+          <b>${escapeHtml(item.nama)}</b>
+          <p>${escapeHtml(item.mesej)}</p>
+          <time>${fmtDate(item.created_at)}</time>
+        </div>
+      `).join('');
+    }catch(e){
+      listEl.classList.remove('scrollable');
+      listEl.innerHTML = `<p class="empty">${t('greetingLoadError')}</p>`;
+    }
+  }
+
+  document.getElementById('gb-form').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const alertArea = document.getElementById('gb-alert-area');
+    const submitBtn = document.getElementById('gb-submit');
+    const payload = {
+      nama: document.getElementById('gb-nama').value,
+      mesej: document.getElementById('gb-mesej').value,
+    };
+    submitBtn.disabled = true;
+    try{
+      const res = await fetch(`${API_BASE}/guestbook.php`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.ok){
+        alertArea.innerHTML = `<div class="alert success">${t('greetingSuccess')}</div>`;
+        document.getElementById('gb-form').reset();
+        loadGuestbook();
+      } else {
+        alertArea.innerHTML = `<div class="alert danger">${translateApiMessage(data.error)}</div>`;
+      }
+    }catch(err){
+      alertArea.innerHTML = `<div class="alert danger">${t('rsvpGenericError')}</div>`;
+    }
+    submitBtn.disabled = false;
+  });
+
+  // ---------- .ics calendar download (Apple/Outlook) ----------
+  function buildIcs(){
+    const ics = [
+      'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//HafizRuqayyah//Wedding//MS',
+      'BEGIN:VEVENT',
+      'UID:' + Date.now() + '@hafizruqayyah',
+      'DTSTAMP:20261001T000000Z',
+      'DTSTART:20261212T030000Z',
+      'DTEND:20261212T090000Z',
+      `SUMMARY:${currentLang === 'en' ? 'Wedding Reception' : 'Majlis Perkahwinan'} Hafiz & Ruqayyah`,
+      'LOCATION:Dewan Serbaguna MBSJ USJ7, Subang Jaya, Selangor',
+      `DESCRIPTION:${currentLang === 'en' ? 'Wedding reception' : 'Majlis Perkahwinan'} Kamarul Hafiz & Tengku Ruqayyah`,
+      'END:VEVENT','END:VCALENDAR'
+    ].join('\r\n');
+    const blob = new Blob([ics], { type: 'text/calendar' });
+    return URL.createObjectURL(blob);
+  }
+  document.getElementById('ics-download').addEventListener('click', function(e){
+    e.preventDefault();
+    const url = buildIcs();
+    const a = document.createElement('a');
+    a.href = url; a.download = 'majlis-hafiz-ruqayyah.ics';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  });
+
+
+  // ---------- Wedding music playlist API ----------
+  let audioPlayer = new Audio();
+  audioPlayer.preload = 'metadata';
+  let playlist = [];
+  let currentTrack = 0;
+  let musicOn = false;
+
+  const musicBtn = document.getElementById('music-btn');
+
+  // Small playlist indicator
+  const musicInfo = document.createElement('div');
+  musicInfo.id = 'music-info';
+  musicInfo.innerHTML = `<span id="music-title">${t('musicPlaylist')}</span><span id="music-status">${t('musicLoading')}</span>`;
+  document.querySelector('.phone').appendChild(musicInfo);
+
+  function showMusicInfo(title, status='Playing'){
+    document.getElementById('music-title').textContent = title || t('musicPlaylist');
+    document.getElementById('music-status').textContent = status;
+    musicInfo.classList.add('show');
+    clearTimeout(musicInfo.hideTimer);
+    musicInfo.hideTimer = setTimeout(()=>musicInfo.classList.remove('show'), 2800);
+  }
+
+  async function loadMusicPlaylist(){
+    try{
+      const response = await fetch('api/music.php', {cache:'no-store'});
+      const data = await response.json();
+
+      if(!data.success || !Array.isArray(data.playlist) || data.playlist.length === 0){
+        throw new Error('Empty playlist');
+      }
+
+      playlist = data.playlist;
+      document.getElementById('music-status').textContent = `${playlist.length} ${t('songCount')}`;
+      return true;
+    }catch(error){
+      console.warn('Music API unavailable:', error);
+      document.getElementById('music-status').textContent = t('noMusic');
+      return false;
+    }
+  }
+
+  function playTrack(index, autoNext=true){
+    if(!playlist.length) return;
+
+    currentTrack = (index + playlist.length) % playlist.length;
+    const track = playlist[currentTrack];
+
+    audioPlayer.src = track.file;
+    audioPlayer.currentTime = 0;
+
+    audioPlayer.play().then(()=>{
+      musicOn = true;
+      musicBtn.textContent = '♫';
+      musicBtn.classList.add('playing');
+      showMusicInfo(track.title, `${t('playing')} ${currentTrack + 1}/${playlist.length}`);
+    }).catch(()=>{
+      musicOn = false;
+      musicBtn.classList.remove('playing');
+      musicBtn.textContent = '♪';
+      showMusicInfo(track.title, t('tapToPlay'));
+    });
+  }
+
+  audioPlayer.addEventListener('ended', ()=>{
+    if(playlist.length) playTrack(currentTrack + 1);
+  });
+
+  audioPlayer.addEventListener('error', ()=>{
+    showMusicInfo(t('musicNotFound'), t('checkMusicFolder'));
+    setTimeout(()=>{
+      if(playlist.length > 1) playTrack(currentTrack + 1);
+    }, 1000);
+  });
+
+  async function startMusic(){
+    if(!playlist.length){
+      const loaded = await loadMusicPlaylist();
+      if(!loaded) return;
+    }
+
+    if(audioPlayer.paused){
+      playTrack(currentTrack);
+    }else{
+      audioPlayer.pause();
+      musicOn = false;
+      musicBtn.classList.remove('playing');
+      musicBtn.textContent = '♪';
+      showMusicInfo(t('musicPaused'), t('tapToResume'));
+    }
+  }
+
+  function stopMusic(){
+    audioPlayer.pause();
+    musicOn = false;
+    musicBtn.classList.remove('playing');
+    musicBtn.textContent = '♪';
+    showMusicInfo(t('musicPaused'), t('tapToResume'));
+  }
+
+  musicBtn.addEventListener('click', ()=>{
+    if(audioPlayer.paused) startMusic();
+    else stopMusic();
+  });
+
+  // Cover opens first, then playlist music starts from the same user gesture.
+  document.getElementById('cover').addEventListener('click', async function(){
+    this.classList.add('open');
+    await loadMusicPlaylist();
+    setTimeout(()=>startMusic(),350);
+  }, {once:true});
+
+
+  // ---------- Live wedding ambience ----------
+  (function startLiveAmbience(){
+    const sparkleEls = document.querySelectorAll('.live-sparkle');
+    if (!sparkleEls.length) return;
+    setInterval(function(){
+      sparkleEls.forEach(function(el){
+        el.style.setProperty('--sparkle-drift', (Math.random()*44-22).toFixed(1)+'px');
+      });
+    }, 2400);
+  })();
+
+  // ---------- Scroll reveal ----------
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+  // ---------- Init ----------
+  applyLanguage(currentLang);
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+DirectoryIndex index.html
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Halang senarai folder
+Options -Indexes
