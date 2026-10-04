@@ -1,4 +1,4 @@
-# Kad Jemputan Digital — Hafiz & Ruqayyah
+# Kad Jemputan Digital
 Full stack: HTML/CSS/JS (frontend) + PHP + MySQL (backend RSVP & Buku Tetamu)
 
 ## Hosting note
