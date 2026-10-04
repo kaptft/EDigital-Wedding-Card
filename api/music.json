@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "playlist": [
+    {
+      "id": 1,
+      "title": "Wedding Prelude",
+      "artist": "Hafiz & Ruqayyah",
+      "file": "assets/music/wedding-prelude.mp3",
+      "duration": 0,
+      "enabled": true
+    },
+    {
+      "id": 2,
+      "title": "Our Wedding",
+      "artist": "Hafiz & Ruqayyah",
+      "file": "assets/music/our-wedding.mp3",
+      "duration": 0,
+      "enabled": true
+    },
+    {
+      "id": 3,
+      "title": "Romantic Evening",
+      "artist": "Wedding Playlist",
+      "file": "assets/music/romantic-evening.mp3",
+      "duration": 0,
+      "enabled": true
+    }
+  ]
+}
